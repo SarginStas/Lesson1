@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static config.Urls.USER5;
-import static config.Urls.USERS;
 import static io.restassured.RestAssured.given;
 
 public class ARTests {
@@ -17,6 +16,7 @@ public class ARTests {
         String url = properties.readProperty("env.dev.url") + USER5;
         Response response = given()
                 .when()
+                .pathParam("id", "5")
                 .get(url)
                 .then()
                 .extract().response();
