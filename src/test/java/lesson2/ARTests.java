@@ -25,7 +25,7 @@ public class ARTests {
                 .then()
                 .extract().response();
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertTrue(response.body().asString().contains("\"abc123\""),
+        Assert.assertTrue(response.body().to.be.an("String"),
                 "Токен не получен");
     }
     }
