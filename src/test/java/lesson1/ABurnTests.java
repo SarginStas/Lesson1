@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 public class ABurnTests {
     ApplicationProperties properties = new ApplicationProperties();
 
-    @Test(description = "Получение списка пользователей по id.")
+    @Test(description = "Получение пользователя по id")
     public void getUsersById() {
         int id = 6;
         String url = properties.readProperty("env.dev.url") + USERS + "/" + id;
