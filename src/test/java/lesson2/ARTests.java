@@ -21,12 +21,12 @@ public class ARTests {
                 .form("user","userPass")
                 .when()
                 .post(url)
-                .body(user, userPass)
+//                .body(user, userPass)
                 .then()
                 .extract().response();
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertTrue(response.body().to.be.an("String"),
-                "Токен не получен");
+//        Assert.assertTrue(response.body().to.be.an("String"),
+//                "Токен не получен");
     }
     }
 

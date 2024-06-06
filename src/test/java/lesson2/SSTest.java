@@ -29,7 +29,7 @@ public class SSTest {
                 .extract().response();
         System.out.println(response.body().print());
         Assert.assertEquals(response.getStatusCode(), 200);
-//        Assert.assertTrue(response.body().jsonPath().get("token") instanceof String, "Значение поля не является строкой");
+        Assert.assertTrue(response.body().jsonPath().get("token") instanceof String, "Значение поля не является строкой");
     }
 }
 
