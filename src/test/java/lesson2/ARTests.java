@@ -1,6 +1,7 @@
 package lesson2;
 
 import config.ApplicationProperties;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,20 +14,18 @@ public class ARTests {
 
     @Test(description = "Получение токена")
     public void getToken() {
-
-        String user="admin";
-        String userPass="password123";
         String url = properties.readProperty("env.dev.url2") + AUTH;
-        Response response = given().auth()
-                .form("user","userPass")
+        String body = "{\"username\" : \"admin\", \"password\" : \"password123\"}";
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(body)
                 .when()
                 .post(url)
-//                .body(user, userPass)
                 .then()
                 .extract().response();
         Assert.assertEquals(response.getStatusCode(), 200);
-//        Assert.assertTrue(response.body().to.be.an("String"),
-//                "Токен не получен");
+        Assert.assertTrue(response.body().asString().contains("\"token\""),
+                "Токен не получен");
     }
     }
 
