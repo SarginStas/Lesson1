@@ -16,7 +16,7 @@ public class ARTests {
     @Test(description = "Новое бронирование")
     public void postBooking() {
         String url = properties.readProperty("env.dev.url2") + BOOK;
-        String body = "{\"firstname\" : \"Anna\", \"lastname\" : \"Rubina\", \"totalprice\" : \"555\", \"depositpaid\" : \"true\", \"bookingdates\" : { \"checkin\" : \"2024-08-12\", \"checkout\" : \"2024-08-22\" } \"additionalneeds\" : \"Breakfast\"}";
+        String body = "{\"firstname\" : \"Jim\", \"lastname\" : \"Brown\", \"totalprice\" : \"111\", \"depositpaid\" : \"true\", \"bookingdates\" : { \"checkin\" : \"2018-01-01\", \"checkout\" : \"2019-01-01\" } \"additionalneeds\" : \"Breakfast\"}";
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
