@@ -1,4 +1,4 @@
-package lesson2;
+package lesson3;
 
 import config.ApplicationProperties;
 import io.restassured.http.ContentType;
@@ -7,15 +7,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static config.Urls.AUTH;
+import static config.Urls.BOOK;
 import static io.restassured.RestAssured.given;
 
 public class ARTests {
     ApplicationProperties properties = new ApplicationProperties();
 
-    @Test(description = "Получение токена")
-    public void getToken() {
-        String url = properties.readProperty("env.dev.url2") + AUTH;
-        String body = "{\"username\" : \"admin\", \"password\" : \"password123\"}";
+    @Test(description = "Новое бронирование")
+    public void postBooking() {
+        String url = properties.readProperty("env.dev.url2") + BOOK;
+        String body = "{\"firstname\" : \"Jim\", \"lastname\" : \"Brown\", \"totalprice\" : \"111\", \"depositpaid\" : \"true\", \"bookingdates\" : { \"checkin\" : \"2018-01-01\", \"checkout\" : \"2019-01-01\" } \"additionalneeds\" : \"Breakfast\"}";
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(body)
@@ -24,8 +25,9 @@ public class ARTests {
                 .then()
                 .extract().response();
         Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertTrue(response.body().asString().contains("\"token\""),
-                "Токен не получен");
+        Assert.assertTrue(response.body().asString().contains("\"bookingid\""),
+                "Новое бронирование не осуществлено");
     }
 }
+
 
