@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static api.RestHelper.getRequest;
+import static api.RestHelper.postRequestWithBody;
 import static config.Urls.BOOK;
 
 public class SSTest {
@@ -31,7 +32,7 @@ public class SSTest {
                 .bookingdates(new BookingDates("2018-01-01", "2019-01-01"))
                 .additionalneeds("Breakfast")
                 .build();
-        Response response = RestHelper.postRequestWithBody(url, BOOK, booking);
+        Response response = postRequestWithBody(url, BOOK, booking);
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 }
