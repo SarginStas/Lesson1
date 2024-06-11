@@ -12,7 +12,7 @@ import static config.Urls.BOOK;
 import static config.Urls.BOOK_ID;
 import static io.restassured.RestAssured.given;
 
-public class ABTest {
+public class ARTest {
     ApplicationProperties properties = new ApplicationProperties();
 
     @Test(description = "Новое бронирование с изменением сроков бронирования")
