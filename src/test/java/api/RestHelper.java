@@ -49,7 +49,7 @@ public class RestHelper {
     public static Response putRequestWithBodyAndToken(String baseUrl, String endPoint, Booking body, String token) {
         String url = baseUrl + endPoint;
         return given().relaxedHTTPSValidation().log().all()
-                .header("Authorization", "Bearer " + token)
+                .header("Cookie", "token=" + token)
                 .contentType(ContentType.JSON)
                 .body(body)
                 .when()
