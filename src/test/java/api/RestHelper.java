@@ -45,4 +45,18 @@ public class RestHelper {
                 .when().post(url).then()
                 .extract().response();
     }
+
+    public static Response putRequestWithBodyAndToken(String baseUrl, String endPoint, Booking body, String token) {
+        String url = baseUrl + endPoint;
+        return given().relaxedHTTPSValidation().log().all()
+                .header("Cookie", "token=" + token)
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when()
+                .put(url)
+                .then()
+                .extract()
+                .response();
+    }
+
 }
